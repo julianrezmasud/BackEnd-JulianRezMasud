@@ -1,43 +1,51 @@
 class ProductManager {
-    constructor(title, description, price, thumbnail, code, stock) {
-        this.title = title
-        this.description = description
-        this.price = price
-        this.thumbnail = thumbnail
-        this.code = code
-        this.stock = stock
+    constructor() {
         this.products = []
+        this.idCreator = 1
     }
-    addProduct(product) {
-        this.products.push(product)
 
+    addProduct(title, description, price, thumbnail, code, stock) {
+
+        if (!title || !description || !price || !thumbnail || !code || !stock) {
+            console.error(`${title}`);
+            return;
+        }
+
+        const thisCode = this.products.some(prod => prod.code === code);
+        if (thisCode) {
+            console.error(`The Code ${code} and ${title} already exist`)
+            return;
+        }
+
+        let id = this.idCreator++
+
+        const newProduct = { title, description, price, thumbnail, code, stock, id };
+        this.products.push(newProduct)
     }
-    /*
-        getProducts(product) {
-            this.products.push(product)
-    
-        }
-    
-    
-        getProductById(product) {
-            this.products.push(product)
-    
-        }
-    */
 
+    getProducts() {
+        return console.log(this.products)
+    }
+
+    getProductById(id) {
+        const productId = this.products.find(prod => prod.id === id)
+
+        productId
+        console.log(`Product ID ${id} was found`)
+        console.error(`Product ID Not Found`)
+    }
 }
 
-const camera1 = new ProductManager("BMPCC4k", "Perfect Camera for Amateur Filmmakers", "$1295", "Thumbnail", "Code", "10")
-const camera2 = new ProductManager("BMPCC6K PRO", "Perfect Camera for Professional Filmmakers", "$2599", "Thumbnail", "Code", "10")
-const camera3 = new ProductManager("EOS C200", "Perfect Camera for Professional Filmmakers", "$3499", "Thumbnail", "Code", "8")
-const camera4 = new ProductManager("EOS R5 C MIRRORLESS", "Perfect Camera for Professional Filmmakers", "$3999", "Thumbnail", "Code", "8")
-const camera5 = new ProductManager("FX30 SUPER 35 CINEMA LINE", "Perfect Camera for Amateur Filmmakers", "$1799", "Thumbnail", "Code", "5")
-const camera6 = new ProductManager("FX6 FULL-FRAME", "Perfect Camera for Professional Filmmakers", "$5999", "Thumbnail", "Code", "5")
+const productManager = new ProductManager();
+
+productManager.addProduct("BMPCC4k", "Perfect Camera for Amateur Filmmakers", "$1295", "Thumbnail", "C001", "10");
+productManager.addProduct("BMPCC6K PRO", "Perfect Camera for Professional Filmmakers", "$2599", "Thumbnail", "C002", "10");
+productManager.addProduct("EOS C200", "Perfect Camera for Professional Filmmakers", "$3499", "Thumbnail", "C003", "8");
+productManager.addProduct("EOS R5 C MIRRORLESS", "Perfect Camera for Professional Filmmakers", "$3999", "Thumbnail", "C004", "8");
+productManager.addProduct("FX30 SUPER 35 CINEMA LINE", "Perfect Camera for Amateur Filmmakers", "$1799", "Thumbnail", "C005", "5");
+productManager.addProduct("FX6 FULL-FRAME", "Perfect Camera for Professional Filmmakers", "$5999", "Thumbnail", "C006", "5");
 
 
-console.log(camera1);
-console.log(camera2);
+productManager.getProducts()
 
-//console.log(camera.video());
-//console.log(camera.resolution());
-// console.log(camera2.resolution());
+productManager.getProductById(1)
