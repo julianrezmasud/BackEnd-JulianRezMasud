@@ -1,0 +1,47 @@
+[
+    {
+        "title": "FX6 FULL-FRAME",
+        "description": "Perfect Camera for Professional Filmmakers",
+        "price": 5999,
+        "thumbnail": "Image",
+        "code": "C006",
+        "stock": 5,
+        "id": 2
+    },
+    {
+        "title": "EOS C200",
+        "description": "Perfect Camera for Professional Filmmakers",
+        "price": "$3499",
+        "thumbnail": "Thumbnail",
+        "code": "C003",
+        "stock": "8",
+        "id": 3
+    },
+    {
+        "title": "EOS R5 C MIRRORLESS",
+        "description": "Perfect Camera for Professional Filmmakers",
+        "price": "$3999",
+        "thumbnail": "Thumbnail",
+        "code": "C004",
+        "stock": "8",
+        "id": 4
+    },
+    {
+        "title": "FX6 FULL-FRAME",
+        "description": "Perfect Camera for Professional Filmmakers",
+        "price": "$5999",
+        "thumbnail": "Thumbnail",
+        "code": "C006",
+        "stock": "5",
+        "id": 6
+    },
+    {
+        "title": "FX30 SUPER 35 CINEMA LINE",
+        "description": "Perfect Camera for Amateur Filmmakers",
+        "price": "$1799",
+        "thumbnail": "Thumbnail",
+        "code": "C005",
+        "stock": "5",
+        "id": 5
+    }
+]
