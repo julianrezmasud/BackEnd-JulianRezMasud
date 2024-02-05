@@ -27,7 +27,6 @@ export class ProductManager {
         this.#products = new Array();
         this.#productsDirPath = './files';
         this.#productsFilePath = this.#productsDirPath + '/productos.json';
-        //this.#fileSystem = require('fs');
         this.#fileSystem = fs
     }
 
@@ -162,9 +161,6 @@ export class ProductManager {
     }
 
 }
-
-//module.exports = ProductManager;
-//export { ProductManager }
 
 
 
