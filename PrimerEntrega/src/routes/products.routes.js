@@ -39,7 +39,7 @@ router.get('/:pid', async (req, res) => {
     try {
         let idProduct = await productManager.getProductById(pid)
         idProduct
-            ? res.send({ msg: `Product by ID: ${pid} bot found`, Product: idProduct })
+            ? res.send({ msg: `Product by ID: ${pid} not found`, Product: idProduct })
             : res.send({ error: `Product by ID: ${pid} not found:(` })
 
     } catch (error) {

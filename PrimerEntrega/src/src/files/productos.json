@@ -3,7 +3,7 @@
     "title": "BMPCC4k",
     "description": "Perfect Camera for Amateur Filmmakers",
     "code": "A1",
-    "price": 1295,
+    "price": 1695,
     "status": true,
     "stock": 5,
     "category": "Nuevos",
@@ -31,17 +31,6 @@
     "category": "Nuevos",
     "thumbnail": "jpg3",
     "id": "718C"
-  },
-  {
-    "title": "EOS R5 C MIRRORLESS",
-    "description": "Perfect Camera for Professional Filmmakers",
-    "code": "C004",
-    "price": 3999,
-    "status": true,
-    "stock": 8,
-    "category": "Nuevos",
-    "thumbnail": "jpg4",
-    "id": "652J"
   },
   {
     "title": "FX30 SUPER 35 CINEMA LINE",
