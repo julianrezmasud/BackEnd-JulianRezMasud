@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
         res.json(carts)
 
     } catch (error) {
-        res.status(500).send({ status: 500, error: 'Error al obtener los carritos' });
+        res.status(500).send({ status: 500, error: 'Error at get Cart' });
     }
 })
 
@@ -27,27 +27,24 @@ router.get('/:cid', async (req, res) => {
         let cartId = await cartManager.getCartById(cid)
 
         cartId
-            ? res.send({ msg: `Carrito con el ID ${cid} encontrado`, cart: cartId })
-            : res.status(404).send({ error: `Carrito con el ID ${cid} no fue encontrado` });
+            ? res.send({ msg: `Cart by ID ${cid} found it`, cart: cartId })
+            : res.status(404).send({ error: `Cart with ID ${cid} not found` });
 
     } catch (error) {
-        res.status(500).send({ status: 500, error: 'Error al obtener los carritos por ID' });
+        res.status(500).send({ status: 500, error: 'Error at getting carts by ID' });
     }
 })
 
-//? POST PARA CREAR Y AGREGAR CARRITOS
 router.post('/', async (req, res) => {
     try {
         let newPost = await cartManager.addCart()
         res.send(newPost);
-        // limit???
+
     } catch (error) {
-        res.status(500).send({ status: 500, error: 'Error al agregar un nuevo carrito' });
+        res.status(500).send({ status: 500, error: 'Error trying to add new cart' });
     }
 })
 
-
-//? POST PARA CREAR Y AGREGAR PRODUCTOS AL CARRITO SELECCIONADO POR ID
 router.post('/:cid/product/:pid', async (req, res) => {
     let { cid, pid } = req.params
     try {
@@ -55,7 +52,7 @@ router.post('/:cid/product/:pid', async (req, res) => {
         res.send(newProductInCart)
 
     } catch (error) {
-        res.status(500).send({ status: 500, error: ' Error al agregar un producto a un carrito' });
+        res.status(500).send({ status: 500, error: ' Error trying to add a product to cart' });
 
     }
 })

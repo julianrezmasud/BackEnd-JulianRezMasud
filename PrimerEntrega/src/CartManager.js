@@ -3,7 +3,6 @@ import { ProductManager } from "./ProductManager.js";
 let allProductsManager = new ProductManager()
 
 
-
 export class Cart {
     constructor(id, products) {
         this.id = id;
@@ -24,20 +23,18 @@ export class CartManager {
         this.#fileSystem = fs;
     }
 
-    //todo **********   RANDOM ID CART   **************
     randomIdCartGenerator = async () => {
         let code = "";
         for (let i = 0; i < 9; i++) {
             code += Math.floor(Math.random() * 10);
         }
-        // Generar una letra aleatoria entre A (65) y Z (90) (códigos ASCII)
+
         const randomLetter = String.fromCharCode(
             Math.floor(Math.random() * (90 - 65 + 1)) + 65
         );
         return randomLetter + '-' + code;
     };
 
-    //todo **********   CREAR DIR O ARCHIVO SI NO EXISTEN   **************
     createDirOrFile = async () => {
         await this.#fileSystem.promises.mkdir(this.#cartDirPath, {
             recursive: true,
@@ -47,7 +44,6 @@ export class CartManager {
         }
     };
 
-    //todo **********   GET CARTS   **************
     getCarts = async () => {
         try {
             await this.createDirOrFile();
@@ -58,46 +54,43 @@ export class CartManager {
             );
             this.#cart = JSON.parse(cartFile);
 
-            if (this.#cart.length === 0) { return "Aún no existe ningún carrito" }
+            if (this.#cart.length === 0) { return "Cart not available at the moment" }
             else {
                 return this.#cart;
             }
 
         } catch (error) {
             throw Error(
-                `ERROR AL CONSULTAR CARRITO: ${JSON.stringify(
+                `Error trying to check Cart: ${JSON.stringify(
                     this.#cartDirPath
-                )}.\nDetalle del error: ${error}`
+                )}.\nDetail Error: ${error}`
             );
         }
     };
 
-    //todo **********   GET CART BY ID  **************
     getCartById = async (id) => {
         try {
             await this.getCarts();
 
-            if (this.#cart.length === 0) return "Aún no tienes ningun carrito agregado."
+            if (this.#cart.length === 0) return "None Cart added at the moment."
 
             let cartId = await this.#cart.find(cart => cart.id === id);
             return cartId
 
         } catch (error) {
             throw Error(
-                `ERROR AL BUSCAR UN CARRITO POR ID: ${JSON.stringify(
+                `Error trying to find cart by ID: ${JSON.stringify(
                     this.#cartDirPath
-                )}.\nDetalle del error: ${error}`
+                )}.\nDetail Error: ${error}`
             );
         }
     };
 
-
-    //todo **********   POST CART    **************
     addCart = async () => {
         try {
             let idCart = await this.randomIdCartGenerator();
             let newCart = new Cart(idCart, []);
-            console.log("*** Nuevo carrito: ***");
+            console.log("New Cart");
             console.log(newCart);
 
             await this.createDirOrFile();
@@ -112,33 +105,30 @@ export class CartManager {
 
             return this.#cart;
         } catch (error) {
-            console.error(`ERROR AL AGREGAR CARRITO NUEVO: ${error}`);
+            console.error(`Error adding new Cart: ${error}`);
             throw error;
         }
     };
 
 
-    //todo **********   POST PRODUCTS IN CART    **************        
     addNewProductsInCart = async (cid, pid) => {
 
 
-        //verificando si existe el carrito por id
         let cartById = await this.getCartById(cid)
-        if (!cartById) return `Carrito ${cid} no Encontrado`
-        //verificando si existe el producto por id
-        let productById = await allProductsManager.getProductById(pid)
-        if (!productById) return `Producto ${pid} no Encontrado`
+        if (!cartById) return `Cart ${cid} not available`
 
-        // Si el producto existe en el carrito, incrementar quantity
+        let productById = await allProductsManager.getProductById(pid)
+        if (!productById) return `Product ${pid} not found`
+
+
         let productExist = cartById.products.find(prod => prod.id === pid);
         productExist
             ? productExist.quantity++
             : cartById.products.push({ id: productById.id, quantity: 1 });
 
-        // traer todos los carritos
+
         let allCarts = await this.getCarts();
 
-        // Filtrar carritos actuales y concatenarlos con el carrito modificado
         allCarts = allCarts.filter(cart => cart.id !== cid);
         let updatedCarts = [cartById, ...allCarts];
 
@@ -148,4 +138,3 @@ export class CartManager {
     }
 
 }
-// * FIN DE CLASE

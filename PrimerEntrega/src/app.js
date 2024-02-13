@@ -19,7 +19,7 @@ app.listen(PORT, () => {
 
 app.get('/ping', (req, res) => {
     res.send({ status: 'ok' })
-    console.log(__dirname);
+
 })
 
 
