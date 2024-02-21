@@ -1,0 +1,30 @@
+<main class="main-container">
+    <div>
+        <h1>Product List</h1>
+        <p>HANDLEBARS</p>
+    </div>
+
+    <section class="cards-container">
+        {{#each products}}
+        <div class="card">
+            <div class="img-card-container">
+                <img src="{{this.thumbnail}}" alt="{{this.title}}"></p>
+            </div>
+            <ul>
+                <li>
+                    <h2>{{this.title}}</h2>
+                </li>
+                <li>
+                    <h4><b>Price: </b>${{this.price}}</h4>
+                </li>
+                <li><b>Description:</b> {{this.description}}</li>
+                <li><b>Code:</b> {{this.code}}</li>
+                <li><b>Status:</b> {{this.status}}</li>
+                <li><b>Stock:</b> {{this.stock}}</li>
+                <li><b>Category:</b> {{this.category}}</li>
+            </ul>
+        </div>
+        {{/each}}
+    </section>
+
+</main>

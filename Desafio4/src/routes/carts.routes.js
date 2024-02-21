@@ -7,14 +7,13 @@ let cartManager = new CartManager()
 const router = Router()
 
 
-
 router.get('/', async (req, res) => {
     try {
         let carts = await cartManager.getCarts()
         res.json(carts)
 
     } catch (error) {
-        res.status(500).send({ status: 500, error: 'Error at get Cart' });
+        res.status(500).send({ status: 500, error: 'Error trying to get carts' });
     }
 })
 
@@ -25,11 +24,11 @@ router.get('/:cid', async (req, res) => {
         let cartId = await cartManager.getCartById(cid)
 
         cartId
-            ? res.send({ msg: `Cart by ID ${cid} found it`, cart: cartId })
+            ? res.send({ msg: `Cart with ID ${cid} found it`, cart: cartId })
             : res.status(404).send({ error: `Cart with ID ${cid} not found` });
 
     } catch (error) {
-        res.status(500).send({ status: 500, error: 'Error at getting carts by ID' });
+        res.status(500).send({ status: 500, error: 'Error trying to get carts by ID' });
     }
 })
 
@@ -39,9 +38,10 @@ router.post('/', async (req, res) => {
         res.send(newPost);
 
     } catch (error) {
-        res.status(500).send({ status: 500, error: 'Error trying to add new cart' });
+        res.status(500).send({ status: 500, error: 'Error addign new cart' });
     }
 })
+
 
 router.post('/:cid/product/:pid', async (req, res) => {
     let { cid, pid } = req.params
@@ -50,7 +50,7 @@ router.post('/:cid/product/:pid', async (req, res) => {
         res.send(newProductInCart)
 
     } catch (error) {
-        res.status(500).send({ status: 500, error: ' Error trying to add a product to cart' });
+        res.status(500).send({ status: 500, error: ' Error tryign to add product to Cart' });
 
     }
 })

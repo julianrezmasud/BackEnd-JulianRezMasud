@@ -1,0 +1,99 @@
+<main class="main-container">
+
+    <div>
+        <h1>Product List</h1>
+        <p> HANDLEBARS and WEBSOCKETS</p>
+    </div>
+
+    <div class="columns">
+
+
+        <section class="form-container">
+            <div>
+                <h4>Check Products with Websockets</h4>
+                <div>
+
+
+                    <form class="form" id="formGet">
+                        <div class="input-wrap">
+                            <label for="getProductId-input">Find product by ID</label>
+                            <p>press again button to go back to all products</p>
+                            <input id="getProductId-input" name="ProductId" type="text" alt="Find Product by ID">
+                        </div>
+
+                        <div class="btn-wrap">
+                            <button>Check</button>
+                            <strong id="msgGet"></strong>
+                        </div>
+                    </form>
+
+
+                    <form class="form" id="formPost">
+                        <div class="input-wrap">
+                            <label for="postProduct-input">Add Product</label>
+                            <p>Must add product in format JSON.</p>
+
+                            <textarea id="postProduct-input" name="addProductJson" type="text"
+                                placeholder="Add product in format JSON {'key':'value'}," rows="10"></textarea>
+                        </div>
+
+                        <div class="btn-wrap">
+                            <button>Add</button>
+                            <strong id="msgPost"></strong>
+                        </div>
+                    </form>
+
+
+
+
+                    <form class="form" id="formDel">
+                        <div class="input-wrap">
+                            <label for="delProduct-input">Delete product by ID</label>
+                            <p>Add ID Product that you would like to delete</p>
+                            <input id="delProduct-input" name="ProductId" type="text" alt="Eliminate Product by ID">
+                        </div>
+
+                        <div class="btn-wrap">
+                            <button>Delete</button>
+                            <strong id="msgDel"></strong>
+                        </div>
+                    </form>
+
+
+
+        </section>
+
+
+
+        <section class="cards-container" id="cards-container">
+
+            {{#each products}}
+            <div class="card" id="card">
+                <div class="img-card-container">
+                    <img src={{this.thumbnail}} alt={{this.title}}></p>
+                </div>
+                <ul>
+                    <li>
+                        <h2>{{this.title}}</h2>
+                    </li>
+                    <li>
+                        <h4><b>Price: </b>${{this.price}}</h4>
+                    </li>
+                    <li><b>Description:</b> {{this.description}}</li>
+                    <li><b>Code:</b> {{this.code}}</li>
+                    <li><b>Status:</b> {{this.status}}</li>
+                    <li><b>Stock:</b> {{this.stock}}</li>
+                    <li><b>Category:</b> {{this.category}}</li>
+                    <li><b>ID:</b> {{this.id}}</li>
+                </ul>
+            </div>
+            {{/each}}
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realtimeproducts.js"></script>
