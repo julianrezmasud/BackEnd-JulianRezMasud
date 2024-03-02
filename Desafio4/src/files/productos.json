@@ -53,5 +53,16 @@
         "category": "Nuevos",
         "thumbnail": "jpg6",
         "id": "559Q"
+    },
+    {
+        "title": "EOS R5 C MIRRORLESS",
+        "description": "Perfect Camera for Professional Filmmakers",
+        "code": "C007",
+        "price": 3999,
+        "status": true,
+        "stock": 8,
+        "category": "Nuevos",
+        "thumbnail": "jpg7",
+        "id": "957J"
     }
 ]

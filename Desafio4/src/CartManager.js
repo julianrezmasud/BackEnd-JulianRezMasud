@@ -19,7 +19,7 @@ export class CartManager {
 
     constructor() {
         this.#cart = new Array();
-        this.#cartDirPath = "./src/files";
+        this.#cartDirPath = "./files";
         this.#cartFilePath = this.#cartDirPath + "/carts.json";
         this.#fileSystem = fs;
     }

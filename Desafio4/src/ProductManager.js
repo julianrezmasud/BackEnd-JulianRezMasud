@@ -26,7 +26,7 @@ export class ProductManager {
 
     constructor() {
         this.#products = new Array();
-        this.#productsDirPath = './src/files';
+        this.#productsDirPath = './files';
         this.#productsFilePath = this.#productsDirPath + '/productos.json';
 
         this.#fileSystem = fs
