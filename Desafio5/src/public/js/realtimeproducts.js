@@ -20,12 +20,12 @@ const printCard = (prod) => {
     </div>
     <ul>
     <li><h2>${prod.title}</h2></li>
-    <li><h4><b>Precio: </b>$${prod.price}</h4></li>
-    <li><b>Descripción:</b> ${prod.description}</li>
-    <li><b>Código:</b> ${prod.code}</li>
+    <li><h4><b>Price: </b>$${prod.price}</h4></li>
+    <li><b>Description:</b> ${prod.description}</li>
+    <li><b>Code:</b> ${prod.code}</li>
     <li><b>Status:</b> ${prod.status}</li>
     <li><b>Stock:</b> ${prod.stock}</li>
-    <li><b>Categoría:</b> ${prod.category}</li>
+    <li><b>Category:</b> ${prod.category}</li>
     <li><b>ID:</b> ${prod.id}</li>
     </ul>
     </div>
@@ -67,10 +67,10 @@ formPost.addEventListener("submit", (e) => {
     let postProduct = document.getElementById('postProduct-input').value.trim();
 
     // no enviar formulario vacio
-    if (postProduct.length == 0) return msgPost.innerHTML = "Debe agregar un producto";
+    if (postProduct.length == 0) return msgPost.innerHTML = "Add Product";
     // no enviar letras o numeros
     if (/^\d+$/.test(postProduct) || /^[a-zA-Z]+$/.test(postProduct)) {
-        return msgPost.innerHTML = "Debe introducir un producto en formato JSON";
+        return msgPost.innerHTML = "Add Product in format JSON";
     }
     // asegurarme que solo envie formato json
     try {
@@ -79,7 +79,7 @@ formPost.addEventListener("submit", (e) => {
         msgPost.innerHTML = "";
     }
     catch (error) {
-        msgPost.innerHTML = "Debe introducir un producto en formato JSON";
+        msgPost.innerHTML = "Add Porduct in format JSON";
     }
 })
 // del servidor al cliente

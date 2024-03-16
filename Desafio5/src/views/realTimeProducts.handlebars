@@ -1,8 +1,8 @@
 <main class="main-container">
 
     <div>
-        <h1>Lista de Productos</h1>
-        <p>CON HANDLEBARS Y WEBSOCKETS</p>
+        <h1>Product List</h1>
+        <p>With HANDLEBARS AND WEBSOCKETS</p>
     </div>
 
     <div class="columns">
@@ -10,19 +10,19 @@
         {{!-- FORMULARIO --}}
         <section class="form-container">
             <div>
-                <h4>Consulta de productos con websockets</h4>
+                <h4>Check Products with websockets</h4>
                 <div>
 
                     {{!--! FORM GET --}}
                     <form class="form" id="formGet">
                         <div class="input-wrap">
-                            <label for="getProductId-input">Busca producto por ID</label>
-                            <p>O presiona directamente Consultar para ver todos los productos</p>
-                            <input id="getProductId-input" name="ProductId" type="text" alt="busca producto por ID">
+                            <label for="getProductId-input">Find a Product by ID</label>
+                            <p>Check Products</p>
+                            <input id="getProductId-input" name="ProductId" type="text" alt="Find Product by ID">
                         </div>
 
                         <div class="btn-wrap">
-                            <button>Consultar</button>
+                            <button>Check</button>
                             <strong id="msgGet"></strong>
                         </div>
                     </form>
@@ -30,15 +30,15 @@
                     {{!-- ! FORM POST --}}
                     <form class="form" id="formPost">
                         <div class="input-wrap">
-                            <label for="postProduct-input">Agrega un Producto</label>
-                            <p>Debe agregar producto en formato JSON.</p>
+                            <label for="postProduct-input">Add a Product</label>
+                            <p>Add Product in format JSON.</p>
 
                             <textarea id="postProduct-input" name="addProductJson" type="text"
-                                placeholder="agrega un producto en formato JSON {'key':'value'}" rows="10"></textarea>
+                                placeholder="Add Product in format JSON {'key':'value'}" rows="10"></textarea>
                         </div>
 
                         <div class="btn-wrap">
-                            <button>Agregar</button>
+                            <button>Add</button>
                             <strong id="msgPost"></strong>
                         </div>
                     </form>
@@ -48,13 +48,13 @@
                     {{!--! FORM DELETE --}}
                     <form class="form" id="formDel">
                         <div class="input-wrap">
-                            <label for="delProduct-input">Elimina producto por ID</label>
-                            <p>Ingrese el ID del Producto que desea eliminar</p>
-                            <input id="delProduct-input" name="ProductId" type="text" alt="elimina producto por ID">
+                            <label for="delProduct-input">Delete Product by ID</label>
+                            <p>Add Product ID to Delet</p>
+                            <input id="delProduct-input" name="ProductId" type="text" alt="Delet Product by ID">
                         </div>
 
                         <div class="btn-wrap">
-                            <button>Eliminar</button>
+                            <button>Delete</button>
                             <strong id="msgDel"></strong>
                         </div>
                     </form>
@@ -77,13 +77,13 @@
                         <h2>{{this.title}}</h2>
                     </li>
                     <li>
-                        <h4><b>Precio: </b>${{this.price}}</h4>
+                        <h4><b>Price: </b>${{this.price}}</h4>
                     </li>
-                    <li><b>Descripción:</b> {{this.description}}</li>
-                    <li><b>Código:</b> {{this.code}}</li>
+                    <li><b>Description:</b> {{this.description}}</li>
+                    <li><b>Code:</b> {{this.code}}</li>
                     <li><b>Status:</b> {{this.status}}</li>
                     <li><b>Stock:</b> {{this.stock}}</li>
-                    <li><b>Categoría:</b> {{this.category}}</li>
+                    <li><b>Category:</b> {{this.category}}</li>
                     <li><b>ID:</b> {{this.id}}</li>
                 </ul>
             </div>
