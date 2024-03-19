@@ -14,7 +14,7 @@ import cartsRoutes from './routes/carts.routes.js';
 import productsRoutes from './routes/products.routes.js';
 
 //* /api/products/ -> FS HB:
-//import viewRoutes from './routes/views.routes.js'; 
+//import viewRoutes from './routes/views.routes.js';
 
 //* /realtimeproducts/ -> FS HB WS:
 //import viewSocketsRoutes from './routes/viewsSocket.routes.js';
