@@ -1,0 +1,35 @@
+<main>
+    <div class="cart-header">
+        <h1>Cart {{_id}}</h1>
+
+        <button>Empty Cart</button>
+    </div>
+
+    {{#each products}}
+    <div class="product-container">
+
+
+        <section class="product">
+
+            <div class="img-container">
+                <img src="{{this.thumbnails}}" alt="{{this.title}}">
+            </div>
+
+            <div class="info-container">
+                <h3>{{this.title}}</h3>
+                <p><b>Price:</b> ${{this.price}}</p>
+                <p><b>Quantity:</b> {{this.quantity}}</p>
+            </div>
+
+        </section>
+
+        <section class="btn-container">
+            <button>Buy</button>
+            <button>Delete from Cart</button>
+        </section>
+
+    </div>
+    <hr>
+    {{/each}}
+
+</main>
