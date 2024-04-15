@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
 
+
 // config ruta absoluta
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -34,6 +35,8 @@ export const uploader = multer({
     }
 })
 
+
+
 /*=============================================
 =                   BCRYPT                   =
 =============================================*/
@@ -41,6 +44,8 @@ export const uploader = multer({
 export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 // verificando hash - el usuario se loguea
 export const isValidPassword = (user, password) => bcrypt.compareSync(password, user.password)
+
+
 
 
 /*=============================================
@@ -77,6 +82,11 @@ export const passportCall = (strategy) => {
     }
 };
 
+
+/*=============================================
+=                 AUTHTOKEN                  =
+=============================================*/
+//fue sacada de utils.js y llevada a users.extend.routes.js, dentro de la funcion handlePolicies.
 
 /*=============================================
 =                    ROLES                    =
