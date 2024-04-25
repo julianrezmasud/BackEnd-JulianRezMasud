@@ -1,0 +1,93 @@
+<main class="main-container">
+
+
+    <nav class="nav">
+        {{#if user}}
+        <div class="user">
+            <h2>Welcome{{user.name}}!</h2>
+        </div>
+        <div>
+            {{!-- <button>Log Out</button> --}}
+            {{!-- <a href="/user/profile">Perfil</a> --}}
+            <a href="/user/current-user">Profile</a>
+        </div>
+        <div>
+            {{!-- <button>Log Out</button> --}}
+            <a href="/user/logout">Logout</a>
+        </div>
+        {{else}}
+        <div>
+            <a href="/user/login">Login</a>
+        </div>
+        {{/if}}
+    </nav>
+
+
+
+
+    <div>
+        <h1>Products List HB</h1>
+    </div>
+
+
+    {{#if isValid}} {{!-- Si hay productos (documentos) para mostrar --}}
+
+
+    <section class="cards-container">
+
+
+
+        <div class="paginate-controls-container">
+            <div>
+                {{#if prevLink}} {{!-- Si hay pagina previa --}}
+                <a href={{prevLink}}>
+                    << Previous</a>
+                        {{/if}}
+                        &nbsp;
+                        {{currentPage}} /&nbsp;{{totalPages}}
+                        &nbsp;
+                        {{#if nextLink}}
+                        <a href={{nextLink}}> Next >></a>
+                        {{/if}}
+            </div>
+            <div>
+                <b>{{totalDocs}}</b> Products Founds
+            </div>
+        </div>
+
+
+        {{#each products}} {{!-- por cada documento/producto... --}}
+
+        <div class="card">
+            <div class="img-card-container">
+                <img src="{{this.thumbnails}}" alt="{{this.title}}">
+            </div>
+            <ul>
+                <li>
+                    <h2>{{this.title}}</h2>
+                </li>
+                <li>
+                    <h4><b>Price: </b>${{this.price}}</h4>
+                </li>
+                <li><b>Description:</b> {{this.description}}</li>
+                <li><b>Code:</b> {{this.code}}</li>
+                <li><b>Status:</b> {{this.status}}</li>
+                <li><b>Stock:</b> {{this.stock}}</li>
+                <li><b>Category:</b> {{this.category}}</li>
+            </ul>
+            <button>Add to Cart</button>
+        </div>
+
+        {{/each}}
+    </section>
+
+
+    {{else}}
+
+    <h4>No products to Show</h4>
+    <button id="">Back Home</button>
+
+
+    {{/if}}
+
+</main>
