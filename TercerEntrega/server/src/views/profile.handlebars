@@ -1,0 +1,37 @@
+<div>
+    <h1>Profile (sin datos sensibles)</h1>
+    <p>{{user.name}}</p>
+    <p>{{user.email}}</p>
+    <p>{{user.age}}</p>
+    <p>{{user.role}}</p>
+
+
+
+</div>
+
+
+{{!-- DEPENDIENDO DEL ROL, PUEDE VER UNOS U OTROS BOTONES --}}
+
+<div>
+    <a href="/user/logout">Logout</a>
+</div>
+
+
+{{#if user_role}}
+<div>
+    <a href="/products">Products</a>
+</div>
+<div>
+    <a href="/carts/:cid">Cart</a>
+</div>
+<div>
+    <a href="/chat">Chat</a>
+</div>
+{{/if}}
+
+
+{{#if admin_role}}
+<div>
+    <p>Edit Products</p>
+</div>
+{{/if}}
