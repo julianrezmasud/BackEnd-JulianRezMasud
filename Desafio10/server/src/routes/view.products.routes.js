@@ -85,20 +85,20 @@ router.get('/', passportCall('jwt'), authorization('user'), async (req, res) => 
 
 
         // buscar por categoria ("Usado" / "Nuevos") ---   http://localhost:8080/products?page=1&search=Usado
-        if (search) {
-            result = await productsModel.paginate(categoryFilter, { page, limit: 6, lean: true, sort: sortFilter })
+        //if (search) {
+        //  result = await productsModel.paginate(categoryFilter, { page, limit: 6, lean: true, sort: sortFilter })
 
-            result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}` : '';
-            result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}` : '';
-            result.isValid = !(page < 1 || page > result.totalPages)
+        //  result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}` : '';
+        //  result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}` : '';
+        // result.isValid = !(page < 1 || page > result.totalPages)
 
-            // buscar por categoria y por orden de precio ---  http://localhost:8080/products?page=1&search=Usado&sort=asc
-            if (sort) {
-                result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}&sort=${sort}` : '';
-                result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}&sort=${sort}` : '';
-                result.isValid = !(page < 1 || page > result.totalPages)
-            }
-        }
+        // buscar por categoria y por orden de precio ---  http://localhost:8080/products?page=1&search=Usado&sort=asc
+        //  if (sort) {
+        //     result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}&sort=${sort}` : '';
+        //    result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}&sort=${sort}` : '';
+        //     result.isValid = !(page < 1 || page > result.totalPages)
+        // }
+        // }
 
         res.render('products', {
             title: "View | Products",

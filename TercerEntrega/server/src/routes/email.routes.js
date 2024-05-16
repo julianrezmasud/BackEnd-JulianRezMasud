@@ -1,17 +1,15 @@
-
-import { Router } from 'express';
-import { passportCall, authorization } from "../utils.js";
-const chatRoutes = Router()
-
-
-chatRoutes.get('/', passportCall('jwt'), authorization('user'), async (req, res) => {
+import { Router } from "express";
+// import { sendEmail, sendEmailWithAttachments } from '../controllers/email.controller.js';
+import { sendEmail } from '../controllers/email.controller.js';
 
 
-    res.render('chat', {
-        title: "Mensajes",
-        chatStyle: "StyleChat.css",
-    });
-});
+const router = Router();
+
+router.get("/", sendEmail);
+//router.get("/attachments", sendEmailWithAttachments);
 
 
-export default chatRoutes
+export default router;
+
+
+//? SE PUEDE APLICAR PARA MANDAR COMPROBANTE (TICKET) AL USUARIO DESPUES DE UNA COMPRA.

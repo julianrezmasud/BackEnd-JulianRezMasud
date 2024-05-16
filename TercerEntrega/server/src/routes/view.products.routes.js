@@ -88,7 +88,7 @@ router.get('/', passportCall('jwt'), authorization('user'), async (req, res) => 
         }
 
         res.render('products', {
-            title: "Vista | Productos",
+            title: "View | Products",
             styleProds: "styleProducts.css",
             user: req.user,
             products: result.docs,
@@ -100,7 +100,7 @@ router.get('/', passportCall('jwt'), authorization('user'), async (req, res) => 
             isValid: result.isValid
         })
 
-        console.log("Usuario" + req.user.name)
+        console.log("User" + req.user.name)
 
     } catch (error) {
         console.error("Error al obtener productos paginados:", error);
