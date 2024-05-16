@@ -9,8 +9,8 @@ const router = Router()
 
 router.get('/:cid', async (req, res) => {
     let { cid } = (req.params);
-    cid = cid.toString()
-    console.log("TIPO DE DATO:::::::::" + typeof (cid))
+    // cid = cid.toString()
+    // console.log("TIPO DE DATO:::::::::" + typeof(cid))
     try {
         let cart = await cartService.getById(cid);
         if (!cart) {
@@ -35,7 +35,6 @@ router.get('/:cid', async (req, res) => {
         res.status(500).send({ status: 500, error: 'Error al obtener el carrito por su ID' });
     }
 });
-
 
 
 

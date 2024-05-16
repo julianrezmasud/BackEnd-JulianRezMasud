@@ -1,4 +1,5 @@
 import { cartsModel } from './models/carts.model.js';
+import { productService } from '../../service.js';
 
 
 export default class CartsServiceMongo {
@@ -6,6 +7,8 @@ export default class CartsServiceMongo {
         //console.log("Working carts with Database persistence in mongodb");
     }
 
+
+    //get A1
     getAll = async () => {
         try {
             let carts = await cartsModel.find();
@@ -17,9 +20,12 @@ export default class CartsServiceMongo {
         }
     }
 
+
+    //get by id A2
     getById = async (cid) => {
         try {
-            let cartById = await cartsModel.findOne({ _id: cid });
+            // let cartById = await cartsModel.findOne({_id:cid});
+            let cartById = await cartsModel.findById(cid);
             return cartById
 
         } catch (error) {
@@ -29,7 +35,9 @@ export default class CartsServiceMongo {
     }
 
 
+    //post A3
     create = async (cart) => {
+
         try {
             let newCart = await cartsModel.create(cart);
             return newCart
@@ -40,6 +48,8 @@ export default class CartsServiceMongo {
         }
     }
 
+    //put prod in cart A4
+    //? AGREGAR PRODUCTO AL CARRITO
     update = async (cid, pid) => {
         try {
             let cart = await cartsModel.findById(cid);
@@ -66,9 +76,10 @@ export default class CartsServiceMongo {
     }
 
 
+
     //? ACTUALIZAR CANTIDAD (quantity) DE PRODUCTO SELECCIONADO EN CARRITO. 
     //  mediante updateOne -> $set
-
+    // A5
     updateQuantity = async (cid, pid, quantity) => {
 
         try {
@@ -86,7 +97,7 @@ export default class CartsServiceMongo {
 
     //? ELIMINAR 1 PRODUCTO SELECCIONADO DENTRO DE CARRITO. 
     // eliminar 1 producto seleccionado dentro del carrito mediante updateOne -> $pull
-
+    // A6
     delete = async (cid, pid) => {
         try {
             let deleteProduct = await cartsModel.updateOne({ _id: cid }, { $pull: { products: { product: pid } } });
@@ -100,7 +111,7 @@ export default class CartsServiceMongo {
 
     //? VACIAR CARRITO. 
     // vaciar todo el carrito mediante updateOne -> $set 
-
+    // A7
     clear = async (cid) => {
         try {
             let clearCart = await cartsModel.updateOne({ _id: cid }, { $set: { products: [] } });
@@ -113,43 +124,14 @@ export default class CartsServiceMongo {
 
     }
 
-    //todo FINALIZAR COMPRA PRODUCTO. 
-
-    purchase = async (cid, pid, quantity) => {
-        try {
-
-
-        } catch (error) {
-            console.error('Error al querer finalizar la compra:', error);
-            throw error;
-        }
-
-    }
-
-
-    //? AGREGAR PRODUCTO AL CARRITO DEL USUARIO
-
-    addToCart = async (uid, pid) => {
-        try {
-            // Obtener el carrito del usuario
-            let cart = await cartsModel.findOne({ user: uid });
-
-            // Si el usuario no tiene un carrito, crear uno nuevo
-            if (!cart) {
-                cart = await cartsModel.create({ user: uid, products: [pid] });
-            } else {
-                // Agregar el producto al carrito existente del usuario
-                cart.products.push(pid);
-                await cart.save();
-            }
-        } catch (error) {
-            throw new Error("Error al agregar producto al carrito");
-        }
-    };
-
-
-
 }
+
+
+
+
+
+
+
 
 
 

@@ -4,8 +4,6 @@ import { authorization, passportCall } from "../utils.js";
 
 const router = Router();
 
-//? aca solo van los renders para las plantillas handlebars
-
 
 router.get("/login", (req, res) => {
   res.render('login', {
@@ -32,10 +30,11 @@ router.get("/logout", (req, res) => {
 });
 
 
-// Cuando ya tenemos una jwt activa con los datos del user, renderizamos la vista products
+// Cuando ya tenemos una jwt activa con los datos del user, renderizamos la vista current
 // router.get("/", passportCall('jwt'), (req, res) => {
 
 // });
+
 
 router.get("/current", passportCall('jwt'), (req, res) => {
 
@@ -50,6 +49,7 @@ router.get("/current", passportCall('jwt'), (req, res) => {
 });
 
 
+
 router.get("/current/admin", passportCall('jwt'), authorization('admin'), (req, res) => {
   res.render('profile', {
     title: "Admin",
@@ -59,10 +59,13 @@ router.get("/current/admin", passportCall('jwt'), authorization('admin'), (req, 
 });
 
 router.get("/current/user", passportCall('jwt'), authorization('user'), (req, res) => {
+  // let cart = req.user.cart
+  // console.log("CAAAARRTTTT:::::"+cart)
   res.render('profile', {
     title: "User",
     user: req.user,
     user_role: req.user.role,
+    // cart
   })
 });
 

@@ -1,4 +1,5 @@
 
+
 import { Router } from 'express';
 
 // importamos todos los metodos de products controller
@@ -34,10 +35,6 @@ router.put('/:pid', passportCall('jwt'), authorization('admin'), ProductControll
 // DELETE
 router.delete('/:pid', passportCall('jwt'), authorization('admin'), ProductController.deleteProduct)
 
-
-//!
-// Comprar un producto
-router.post("/:productId/buy", passportCall("jwt"), ProductController.buyProduct);
 
 
 export default router;

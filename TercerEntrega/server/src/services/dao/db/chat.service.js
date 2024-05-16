@@ -1,7 +1,7 @@
 //? LADO DEL SERVIDOR
 // LADO DEL CLIENTE EN /public/js/chat.js
 
-import { chatModel } from './models/chat.model.js'
+import { chatModel } from './models/chat.models.js'
 
 export default class ChatService {
     constructor() {

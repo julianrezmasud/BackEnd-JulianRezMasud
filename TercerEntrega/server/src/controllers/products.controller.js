@@ -111,6 +111,8 @@ export const getProductByCategory = async (req, res) => {
 };
 
 
+
+
 export const createProduct = async (req, res) => {
     let newProduct = req.body;
     try {
@@ -134,6 +136,9 @@ export const createProduct = async (req, res) => {
 };
 
 
+
+
+
 export const updateProduct = async (req, res) => {
     let { pid } = req.params;
     let productUpdate = req.body;
@@ -150,8 +155,6 @@ export const updateProduct = async (req, res) => {
             .send({ status: 500, error: " Error al querer editar un producto" });
     }
 };
-
-
 
 
 export const deleteProduct = async (req, res) => {
@@ -173,24 +176,3 @@ export const deleteProduct = async (req, res) => {
 };
 
 
-//!
-export const buyProduct = async (req, res) => {
-    const { productId } = req.params;
-    const { userId } = req.user; // Suponiendo que tienes el ID del usuario en el objeto de solicitud
-
-    try {
-        // Verificar si el producto existe
-        const product = await productService.getById(productId);
-        if (!product) {
-            return res.sendNotFoundResource({ message: "Producto no encontrado" });
-        }
-
-        // Agregar el producto al carrito del usuario
-        await cartService.addToCart(userId, productId);
-
-        return res.sendSuccess({ message: "Producto comprado y agregado al carrito" });
-    } catch (error) {
-        console.error(error);
-        return res.sendInternalServerError({ error: "Error al comprar el producto" });
-    }
-};

@@ -35,12 +35,8 @@ router.delete('/:cid/product/:pid', passportCall('jwt'), authorization('user'), 
 router.delete('/:cid', passportCall('jwt'), authorization('user'), CartController.clearCart)
 
 
-//todo PURCHASE PRODUCT IN CART
-router.get('/:cid/purchase', passportCall('jwt'), authorization('user'), CartController.purchaseProductInCart)
-
-
-//!
-router.post('/addtocart', passportCall('jwt'), authorization('user'), CartController.addToCart);
+// PURCHASE PRODUCT
+router.get('/:cid/purchase', passportCall('jwt'), authorization('user'), CartController.purchaseProduct)
 
 
 export default router;
