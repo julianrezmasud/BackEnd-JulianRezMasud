@@ -14,7 +14,7 @@ export default class ProductServiceMongo {
             return products.map(product => product.toObject());
 
         } catch (error) {
-            console.error('Error trying to get products', error);
+            console.error('Error al obtener los productos', error);
             throw error;
         }
     }
@@ -27,6 +27,8 @@ export default class ProductServiceMongo {
         console.log(result)
         return result;
     };
+
+
 
     //get find by name
     getByCategory = async (category) => {
@@ -48,7 +50,7 @@ export default class ProductServiceMongo {
             return productById
 
         } catch (error) {
-            console.error('Error trying to find product by Id:', error);
+            console.error('Error al buscar un producto por su id:', error);
             throw error;
         }
     }
@@ -58,10 +60,12 @@ export default class ProductServiceMongo {
     create = async (product) => {
         try {
             let newProduct = await productsModel.create(product);
+            // si todo esta ok...
             return newProduct
+        }
 
-        } catch (error) {
-            console.error('Error product', error);
+        catch (error) {
+            console.error('Error al crear un producto', error);
             throw error;
         }
     }
@@ -74,12 +78,12 @@ export default class ProductServiceMongo {
                 body,
                 { new: true });
             if (!updateProduct) {
-                throw new Error(`Product by ID ${pid} not found`);
+                throw new Error(`Producto con ID ${pid} no encontrado`);
             }
             return updateProduct
 
         } catch (error) {
-            console.error('Error', error);
+            console.error('Error al modificar un producto', error);
             throw error;
         }
     }
@@ -91,7 +95,7 @@ export default class ProductServiceMongo {
             return deleteProduct
 
         } catch (error) {
-            console.error('Error delet product', error);
+            console.error('Error al eliminar un producto', error);
             throw error;
         }
     }

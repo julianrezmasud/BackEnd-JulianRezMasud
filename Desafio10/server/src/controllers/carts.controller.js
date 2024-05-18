@@ -139,25 +139,22 @@ export const clearCart = async (req, res) => {
 
 
 
-
-
-
-
 // A8
 //? FINALIZAR COMPRA.
 
 
 export const purchaseProduct = async (req, res) => {
     let { cid } = req.params
-    let user = req.user
+    let userId = req.user._id
 
 
-    //console.log("USERID::::::::::::::::::",userId) //!undefined
+    console.log("USERID::::::::::::::::::", userId) //!undefined
 
 
     try {
         // Obtener el carrito por su ID
         const cart = await cartService.getById(cid);
+
         if (!cart) {
             return res.status(404).send({ error: `El carrito con el ID ${cid} no fue encontrado` });
         }
@@ -215,7 +212,7 @@ export const purchaseProduct = async (req, res) => {
         //Generar ticket con los detalles de la compra
         const ticketDetails = {
             amount: await calculateTotalAmount(cart),
-            purchaser: user.id,
+            purchaser: userId,
         };
         const generatedTicket = await ticketService.generateTicket(ticketDetails);
 
@@ -238,6 +235,19 @@ export const purchaseProduct = async (req, res) => {
         res.status(500).send({ status: 500, error: 'Error al querer finalizar la compra del producto' });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

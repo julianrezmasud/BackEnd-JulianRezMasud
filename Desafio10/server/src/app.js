@@ -20,7 +20,6 @@ import chatController from './controllers/chat.controller.js'; // Importar el co
 const app = express();
 
 
-
 /*=============================================
 =           importacion de rutas              =
 =============================================*/
@@ -56,6 +55,8 @@ import emailRoutes from './routes/email.routes.js'
 //* /chat/ -> DB HB WS
 import chatRoutes from './routes/chat.routes.js';
 
+//* /faker/
+import fakeProductsRoutes from './routes/fakeProducts.routes.js'
 
 
 
@@ -66,13 +67,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-
 /*=============================================
 =       configuracion Middlewares CORS        =
 =============================================*/
 
 app.use(cors()) // CORS sin restricciones
-
 
 
 /*=============================================
@@ -140,7 +139,8 @@ app.use("/api/email", emailRoutes)
 //* endpoint ruta chats WEBSOCKET
 app.use('/chat/', chatRoutes)
 
-
+//* endpoint api fake products
+app.use('/mockingproducts', fakeProductsRoutes)
 
 
 
@@ -174,4 +174,6 @@ mongoInstance();
 
 
 chatController(ioServer);
+
+
 
