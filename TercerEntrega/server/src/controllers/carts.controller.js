@@ -8,6 +8,7 @@
 import { cartService, productService, ticketService } from '../services/service.js';
 
 
+
 //get A1
 //? MOSTRAR TODOS LOS CARRITOS
 export const getAllCarts = async (req, res) => {
@@ -54,6 +55,7 @@ export const createCart = async (req, res) => {
         res.status(500).send({ status: 500, error: 'Error al agregar un nuevo carrito' });
     }
 }
+
 
 
 //put prod in cart A4
@@ -132,13 +134,12 @@ export const clearCart = async (req, res) => {
 
 
 
+// A8
+//? FINALIZAR COMPRA.
 
 
 export const purchaseProduct = async (req, res) => {
     let { cid } = req.params
-    let userId = req.user._id
-
-
 
 
 
@@ -198,13 +199,13 @@ export const purchaseProduct = async (req, res) => {
         };
 
 
-
+        let user = req.user.email
         //Generar ticket con los detalles de la compra
         const ticketDetails = {
             amount: await calculateTotalAmount(cart),
-            purchaser: userId,
+            purchaser: user,
         };
-        //console.log("USER::::::::::::::::::",userId) //!undefined
+        //console.log("TICKET DETAILS:::::++++++++++++:::::::::::::",ticketDetails)
 
         const generatedTicket = await ticketService.generateTicket(ticketDetails);
 
@@ -222,35 +223,10 @@ export const purchaseProduct = async (req, res) => {
 
 
 
-
     } catch (error) {
         res.status(500).send({ status: 500, error: 'Error al querer finalizar la compra del producto' });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

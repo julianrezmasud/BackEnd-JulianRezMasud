@@ -119,7 +119,7 @@ export const authorization = (role) => {
 =============================================*/
 
 
-faker.locale = 'es'; //Idioma de los datos
+faker.locale = 'en'; //Idioma de los datos
 export const generateProduct = () => {
     return {
         title: faker.commerce.productName(),
