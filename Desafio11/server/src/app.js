@@ -17,6 +17,10 @@ import initializePassport from './config/passport.config.js'; // esta viene del 
 import chatController from './controllers/chat.controller.js'; // Importar el controlador de chat
 
 
+// logger
+import { addLogger } from './config/logger.js';
+
+
 const app = express();
 
 
@@ -68,6 +72,12 @@ app.use(express.urlencoded({ extended: true }))
 
 
 /*=============================================
+=          middleware loggers nivel app       =
+=============================================*/
+app.use(addLogger);
+
+
+/*=============================================
 =       configuracion Middlewares CORS        =
 =============================================*/
 
@@ -98,7 +108,6 @@ initializePassport();
 app.use(passport.initialize());
 
 
-
 /*=============================================
 =             Declaración de Routers          =
 =============================================*/
@@ -108,7 +117,6 @@ app.get('/ping', (req, res) => {
     res.send({ status: 'ok' })
     console.log(__dirname);
 })
-
 
 
 //* endpoint API CARRITO
@@ -143,13 +151,30 @@ app.use('/chat/', chatRoutes)
 app.use('/mockingproducts', fakeProductsRoutes)
 
 
+//* logger test
+app.get("/logger-test", (req, res) => {
+
+    // Logica, validaciones, etc...
+
+    req.logger.debug("Prueba de log level debug --> en /logger-test");
+    req.logger.info("Prueba de log level info --> en /logger-test");
+    req.logger.http("Prueba de log level http --> en /logger-test");
+    req.logger.warning("Prueba de log level warning --> en /logger-test");
+    req.logger.error("Prueba de log level error --> en /logger-test");
+    req.logger.fatal("Prueba de log level fatal --> en /logger-test");
+    res.send("Prueba de logger!");
+
+    //? podemos trabajar asi los logers en cualquier endpoint. Va a convivir con los demas logs generales a niver middleware. 
+
+});
+
 
 /*=============================================
 =           declaracion de PORT              =
 =============================================*/
 const SERVER_PORT = config.port; //dejamos de hardcodear el puerto, porque lo traemos desde config.js
 const httpServer = app.listen(SERVER_PORT, () => {
-    console.log(`Server run on port: ${SERVER_PORT}`)
+    console.log(`SERVER RUN ON PORT: ${SERVER_PORT}`)
 })
 
 //creamos un servidor para trabajar con sockets viviendo en nuestro servidor principal
@@ -174,6 +199,4 @@ mongoInstance();
 
 
 chatController(ioServer);
-
-
 

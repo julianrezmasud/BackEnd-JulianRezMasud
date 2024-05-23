@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import * as UserController from '../../controllers/users.controller.js'
 
 
-
 export default class UsersExtendRouter extends CustomRouter {
     init() {
         // inicializa todo el custom router.
@@ -40,10 +39,6 @@ export default class UsersExtendRouter extends CustomRouter {
 
 
 
-
-
-
-
         // ? LOGIN Y REGISTER ABIERTO PUBLICAMENTE 
         // LOGIN
         this.post('/login', ['PUBLIC'], UserController.userLogin)
@@ -60,12 +55,13 @@ export default class UsersExtendRouter extends CustomRouter {
         this.get('/githubcallback', ['PUBLIC'], passport.authenticate('github', { session: false, failureRedirect: '/github/error' }), UserController.userRegisterByGithub)
 
 
-
-
     }
 
 
 }
+
+
+
 
 
 

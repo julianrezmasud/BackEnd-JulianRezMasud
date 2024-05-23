@@ -49,7 +49,6 @@ router.get("/current", passportCall('jwt'), (req, res) => {
 });
 
 
-
 router.get("/current/admin", passportCall('jwt'), authorization('admin'), (req, res) => {
   res.render('profile', {
     title: "Admin",

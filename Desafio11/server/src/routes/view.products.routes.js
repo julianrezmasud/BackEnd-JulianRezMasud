@@ -4,10 +4,7 @@
 
 // import {getViewProductsControllers, getViewOneProductControllers} from '../controllers/viewProducts.controller.js';
 
-
-
 // const router = Router()
-
 
 
 // // GET ALL PRODUCTS CON PAGINATION
@@ -23,8 +20,8 @@
 // export default router;
 
 
-
 //! RESOLVER: PODER GENERAR CAPA VIEWPRODUCTS.CONTROLLER SIN ERROR.
+
 
 
 import { Router } from 'express';
@@ -39,10 +36,13 @@ import { productsModel } from '../services/dao/db/models/products.model.js';
 
 
 
+
 //*PAGINATION con HB. VISTA DE TODOS LOS PRODUCTOS
 // EJ: http://localhost:8080/products?page=1
 
 router.get('/', passportCall('jwt'), authorization('user'), async (req, res) => {
+
+
 
 
     // default page
@@ -85,23 +85,23 @@ router.get('/', passportCall('jwt'), authorization('user'), async (req, res) => 
 
 
         // buscar por categoria ("Usado" / "Nuevos") ---   http://localhost:8080/products?page=1&search=Usado
-        //if (search) {
-        //  result = await productsModel.paginate(categoryFilter, { page, limit: 6, lean: true, sort: sortFilter })
+        if (search) {
+            result = await productsModel.paginate(categoryFilter, { page, limit: 6, lean: true, sort: sortFilter })
 
-        //  result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}` : '';
-        //  result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}` : '';
-        // result.isValid = !(page < 1 || page > result.totalPages)
+            result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}` : '';
+            result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}` : '';
+            result.isValid = !(page < 1 || page > result.totalPages)
 
-        // buscar por categoria y por orden de precio ---  http://localhost:8080/products?page=1&search=Usado&sort=asc
-        //  if (sort) {
-        //     result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}&sort=${sort}` : '';
-        //    result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}&sort=${sort}` : '';
-        //     result.isValid = !(page < 1 || page > result.totalPages)
-        // }
-        // }
+            // buscar por categoria y por orden de precio ---  http://localhost:8080/products?page=1&search=Usado&sort=asc
+            if (sort) {
+                result.prevLink = result.hasPrevPage ? `?page=${result.prevPage}&search=${search}&sort=${sort}` : '';
+                result.nextLink = result.hasNextPage ? `?page=${result.nextPage}&search=${search}&sort=${sort}` : '';
+                result.isValid = !(page < 1 || page > result.totalPages)
+            }
+        }
 
         res.render('products', {
-            title: "View | Products",
+            title: "Vista | Productos",
             styleProds: "styleProducts.css",
             user: req.user,
             products: result.docs,
@@ -113,16 +113,13 @@ router.get('/', passportCall('jwt'), authorization('user'), async (req, res) => 
             isValid: result.isValid
         })
 
-        console.log("User " + req.user.name)
+        console.log("USURUIOOOOOOO " + req.user.name)
 
     } catch (error) {
-        console.error("Error:", error);
-        res.status(500).send("Server Error");
+        console.error("Error al obtener productos paginados:", error);
+        res.status(500).send("Error interno del servidor");
     }
 })
-
-
-
 
 
 

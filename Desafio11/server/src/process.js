@@ -1,7 +1,6 @@
 import { Command } from "commander";
 // import dotenv from "dotenv";
 
-
 const program = new Command(); //Crea la instancia de comandos de commander.
 
 
@@ -15,8 +14,8 @@ program.parse() // paesea los comando y valida si son correctos. Cierra.
 
 // dotenv.config();
 
-console.log('Option:', program.opts());// accedo a todos los options
-console.log('Port:', program.opts().p);
+//console.log('Option:', program.opts());// accedo a todos los options
+//console.log('Port:', program.opts().p);
 console.log('Environment:', program.opts().mode);// esto lo voy a usar en config.js
 console.log('Persistence:', program.opts().persist);
 

@@ -119,7 +119,6 @@ export const userLogin = async (req, res) => {
 };
 
 
-
 /*=============================================
 =          GITHUB  CALLBACK LOGIN               =
 =============================================*/
@@ -146,7 +145,6 @@ export const userRegisterByGithub = async (req, res) => {
 };
 
 
-
 /*=============================================
 =               ALL USERS                  =
 =============================================*/
@@ -164,6 +162,7 @@ export const getAllUsers = async (req, res) => {
       .send({ status: "error", error: "Error interno de la applicacion." });
   }
 };
+
 
 
 /*=============================================

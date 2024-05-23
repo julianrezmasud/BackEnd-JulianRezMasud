@@ -1,6 +1,7 @@
 //? LADO DEL CLIENTE
 // LADO DEL SERVIDOR EN /dao/db/MessageManager.js
 
+
 const socket = io()
 let user;
 const chatBox = document.getElementById('chatBox') //capturamos lo que escriba el usuario
@@ -171,9 +172,3 @@ socket.on('closeMsg', data => {
 
 
 
-
-
-
-
-//* keys emitidas al back: 'userConnected', 'message', 'closeChat'
-//* keys escuchadas del back: 'messageLogs', 'userConnected'

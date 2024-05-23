@@ -4,7 +4,6 @@ import { ProductServiceFileSystem } from "./product.service.js";
 let allProductsService = new ProductServiceFileSystem()
 
 
-
 export class Cart {
     constructor(id, products) {
         this.id = id;
@@ -149,5 +148,3 @@ export class CartsServiceFileSystem {
     }
 
 }
-
-

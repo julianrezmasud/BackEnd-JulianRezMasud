@@ -12,7 +12,6 @@ import passport from 'passport';
 import config from './config/config.js'
 
 
-
 // config ruta absoluta
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -89,12 +88,10 @@ export const passportCall = (strategy) => {
 };
 
 
-
 /*=============================================
 =                 AUTHTOKEN                  =
 =============================================*/
 //fue sacada de utils.js y llevada a users.extend.routes.js, dentro de la funcion handlePolicies.
-
 
 
 /*=============================================
@@ -118,12 +115,8 @@ export const authorization = (role) => {
 =                    FAKER                    =
 =============================================*/
 
-// Set locale during the creation of the faker instance
 
-
-// Set the locale using the constructor
-faker.locale = 'en';
-
+faker.locale = 'es'; //Idioma de los datos
 export const generateProduct = () => {
     return {
         title: faker.commerce.productName(),
@@ -137,6 +130,8 @@ export const generateProduct = () => {
         thumbnails: faker.image.imageUrl()
     }
 };
+
+
 
 
 export default __dirname;

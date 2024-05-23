@@ -6,8 +6,11 @@ import { PRIVATE_KEY } from '../utils.js';
 
 import config from './config.js'
 
+
+
 const JwtStrategy = jwtStrategy.Strategy;
 const ExtractJWT = jwtStrategy.ExtractJwt;
+
 
 
 // inicializando estrategia local. 'username' sera para nosotros 'email'
@@ -81,7 +84,6 @@ const initializePassport = () => {
             }
         }
     ))
-
 
     /*=============================================
     =       passport  serialize&deserialize       =

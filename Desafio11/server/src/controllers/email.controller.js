@@ -3,7 +3,6 @@ import config from '../config/config.js';
 import __dirname from '../utils.js';
 
 
-
 /*=============================================
 =        configuraciones NODEMAILER           =
 =============================================*/
@@ -59,7 +58,6 @@ const mailOptions = {
 // }
 
 
-
 /*=============================================
 =                    APIS                     =
 =============================================*/
@@ -97,7 +95,6 @@ export const sendEmail = (req, res) => {
 //         res.status(500).send({ error: error, message: "No se pudo enviar el email desde:" + config.gmailAccount });
 //     }
 // }
-
 
 
 //? SE PUEDE APLICAR PARA MANDAR COMPROBANTE (TICKET) AL USUARIO DESPUES DE UNA COMPRA.

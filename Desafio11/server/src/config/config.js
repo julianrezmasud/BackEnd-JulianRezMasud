@@ -17,6 +17,7 @@ export default { // esto lo va a consumir app.js
     port: process.env.SERVER_PORT,
     mongoUrl: process.env.MONGO_URL,
     persistence: program.opts().persist,
+    environment: environment,
     adminEmail: process.env.ADMIN_EMAIL,
     adminPassword: process.env.ADMIN_PASSWORD,
     githubClientId: process.env.GITHUB_CLIENT_ID,

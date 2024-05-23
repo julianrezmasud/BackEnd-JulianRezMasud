@@ -1,11 +1,13 @@
 import ticketModel from './models/ticket.model.js';
 
+
+
 export default class TicketService {
     constructor() {
 
     }
 
-    //*
+
     generateTicket = async (purchaseDetails) => {
 
         try {
@@ -31,7 +33,6 @@ export default class TicketService {
 
     }
 }
-//*
 
 
 // código único para el ticket

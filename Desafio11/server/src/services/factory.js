@@ -21,8 +21,6 @@ async function initializeMongoService() {
 }
 
 
-
-
 switch (config.persistence) {
     case 'mongodb':
         initializeMongoService()
@@ -55,4 +53,4 @@ switch (config.persistence) {
         break;
 }
 
-export { productService, cartService } // consumidas por los controllers de product y carts
+export { productService, cartService } 

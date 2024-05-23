@@ -8,7 +8,6 @@
 import { cartService, productService, ticketService } from '../services/service.js';
 
 
-
 //get A1
 //? MOSTRAR TODOS LOS CARRITOS
 export const getAllCarts = async (req, res) => {
@@ -57,9 +56,6 @@ export const createCart = async (req, res) => {
 }
 
 
-
-
-
 //put prod in cart A4
 //? AGREGAR PRODUCTOS (CID) AL CARRITO.
 export const updateProductInCart = async (req, res) => {
@@ -73,9 +69,6 @@ export const updateProductInCart = async (req, res) => {
         res.status(500).send({ status: 500, error: ' Error al agregar un producto a un carrito' });
     }
 }
-
-
-
 
 
 // A5
@@ -138,17 +131,12 @@ export const clearCart = async (req, res) => {
 
 
 
-
 // A8
 //? FINALIZAR COMPRA.
 
 
 export const purchaseProduct = async (req, res) => {
     let { cid } = req.params
-    let userId = req.user._id
-
-
-    console.log("USERID::::::::::::::::::", userId) //!undefined
 
 
     try {
@@ -210,11 +198,13 @@ export const purchaseProduct = async (req, res) => {
 
 
         //Generar ticket con los detalles de la compra
+        let user = req.user.email
         const ticketDetails = {
             amount: await calculateTotalAmount(cart),
-            purchaser: userId,
+            purchaser: user,
         };
         const generatedTicket = await ticketService.generateTicket(ticketDetails);
+        console.log("Ticket de Compra generado:\n", generatedTicket)
 
         // Actualizar el carrito para contener solo los productos que no se pudieron comprar
         cart.products = cart.products.filter(product => !productsPurchased.includes(product.product));
@@ -228,34 +218,10 @@ export const purchaseProduct = async (req, res) => {
         });
 
 
-
-
-
     } catch (error) {
         res.status(500).send({ status: 500, error: 'Error al querer finalizar la compra del producto' });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -71,7 +71,7 @@ export class ProductServiceFileSystem {
             return this.#products
 
         } catch (error) {
-            throw Error(`ERROR trying to consult product: ${JSON.stringify(this.#productsDirPath)}.\nDetalle del error: ${error}`);
+            throw Error(`ERROR AL CONSULTAR PRODUCTOS: ${JSON.stringify(this.#productsDirPath)}.\nDetalle del error: ${error}`);
         }
     }
 
@@ -82,16 +82,16 @@ export class ProductServiceFileSystem {
         try {
             let productsExist = await this.getAll()
 
-            if (productsExist.length === 0) { return "Product doesnt exist" }
+            if (productsExist.length === 0) { return "Aún no existe ningún producto" }
             else {
 
                 let productId = await this.#products.find(prod => prod.id === id)
-                if (!productId) { return "Product not found" }
+                if (!productId) { return "Producto no encontrado" }
                 return productId
             }
 
         } catch (error) {
-            throw Error(`ERROR trying to find product by ID: ${JSON.stringify(this.#productsDirPath)}.\nDetalle del error: ${error}`);
+            throw Error(`ERROR AL BUSCAR UN PRODUCTO POR ID: ${JSON.stringify(this.#productsDirPath)}.\nDetalle del error: ${error}`);
         }
     }
 
@@ -101,7 +101,7 @@ export class ProductServiceFileSystem {
 
         //Verificar si todos los campos obligatorios están presentes y no son nulos o indefinidos
         if (!title || !description || !code || !price || !status || !stock || !category) {
-            return "All must be filled";
+            return "Todos los campos son obligatorios y deben estar completos";
         }
 
         let newProduct = new Product(title, description, code, price, status, stock, category, thumbnail);
@@ -117,7 +117,7 @@ export class ProductServiceFileSystem {
             // verificando que no se repitan el code al ingresar productos
             const uniqueCode = this.#products.some(prod => prod.code === code);
             if (uniqueCode) {
-                return `Code ${code}  ${title} already exist`
+                return `El codigo ${code} del ${title} ingresado ya existe`
             } else {
                 this.#products.push(newProduct)
             }
@@ -127,10 +127,9 @@ export class ProductServiceFileSystem {
 
 
         } catch (error) {
-            console.error(`ERROR trying to add new product: ${error}`);
+            console.error(`ERROR AL AGREGAR PRODUCTO NUEVO: ${error}`);
         }
     }
-
 
 
     //todo **********   UPDATE PRODUCT   **************
@@ -154,7 +153,7 @@ export class ProductServiceFileSystem {
             return prodsUpdated
 
         } catch (error) {
-            throw Error(`ERROR trying to modify product: ${JSON.stringify(this.#productsDirPath)}.\nerror detail: ${error}`);
+            throw Error(`ERROR AL MODIFICAR UN PRODUCTO: ${JSON.stringify(this.#productsDirPath)}.\nDetalle del error: ${error}`);
         }
 
     }
@@ -171,24 +170,22 @@ export class ProductServiceFileSystem {
             //buscamos el registro por el id
             const productPosition = this.#products.findIndex((prod => prod.id === id));
             if (productPosition < 0) {
-                return console.log('product not found');
+                return console.log('producto no encontrado');
 
             }
             // Eliminamos el registro
             this.#products.splice(productPosition, 1);
             if (this.#products.length === productsSize) {
-                return console.log('product cant delete')
+                return console.log('producto no se pudo eliminar')
             }
 
             await this.#fileSystem.promises.writeFile(this.#productsFilePath, JSON.stringify(this.#products, null, 2, '\t'));
             return this.#products
 
         } catch (error) {
-            throw Error(`ERROR trying to delete product: ${JSON.stringify(this.#productsDirPath)}.\nerror detail: ${error}`);
+            throw Error(`ERROR AL ELIMINAR UN PRODUCTO: ${JSON.stringify(this.#productsDirPath)}.\nDetalle del error: ${error}`);
         }
     }
-
-
 
 
 }
